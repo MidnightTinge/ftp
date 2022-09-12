@@ -1,6 +1,11 @@
 import { BOX_SHADOW } from '../../../interop/tw';
 import StyleGenerator, { StyleMap } from '../../StyleGenerator';
 
+/**
+ * Generates all the box-shadow styles from tailwind and makes them locally usable in the document.
+ *
+ * @see PShadows
+ */
 export default class Shadows extends StyleGenerator<EffectStyle> {
   constructor() {
     super('styles.shadows');

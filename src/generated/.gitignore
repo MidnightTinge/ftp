@@ -1,2 +1,5 @@
+# This directory holds auto-generated sources, chiefly "tw.cfg.json" from the tailwind interop
+# generator.
+
 *
 !.gitignore

@@ -60,6 +60,9 @@ export type LayoutFrameProps = {
   vertPlacement: AxisPlacement,
 }
 
+/**
+ * Create a new auto-layout frame.
+ */
 export function LayoutFrame({
   direction,
   itemSpacing,
@@ -134,6 +137,9 @@ export function LayoutFrame({
   return frame;
 }
 
+/**
+ * Create a new text node.
+ */
 export function Text(text: string): TextNode {
   const node = figma.createText();
   node.characters = text;
@@ -148,6 +154,9 @@ export type NewCubeProps = {
   fills?: RectangleNode['fills']
 }
 
+/**
+ * Create a new cube. This is biased towards our color previews for {@link PColors}
+ */
 export function Cube({
   width,
   height,
@@ -168,7 +177,12 @@ export function Cube({
 
 type RGB = { r: number, g: number, b: number }
 
-// https://stackoverflow.com/a/5624139
+/**
+ * Convert a hex string to RGB. The returned RGB are in float notation (e.g. 1.0 instead of 255) to
+ * match figma's system.
+ *
+ * https://stackoverflow.com/a/5624139
+ */
 export function hexToRgb(hex): RGB {
   // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
   const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;

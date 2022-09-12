@@ -4,6 +4,11 @@ import { Cube, LayoutFrame, Text } from '../../../interop/figma';
 import { COLORS } from '../../../interop/tw';
 import { AssetMap, PageGenerator } from '../../PageGenerator';
 
+/**
+ * Generates a preview page for tailwind colors.
+ *
+ * @see SColors
+ */
 export default class Colors extends PageGenerator {
   constructor() {
     super('pages.colors');
