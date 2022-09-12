@@ -183,13 +183,3 @@ export function hexToRgb(hex): RGB {
     b: parseInt(result[3], 16) / 255,
   } : null;
 }
-
-// https://stackoverflow.com/a/47355187
-export function cssToRgb(colorName: string): RGB {
-  // https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-fillstyle
-
-  // @ts-expect-error: This runs in a document environment, but we're transpiling from node.
-  const _ctx = document.createElement('canvas').getContext('2d');
-  _ctx.fillStyle = colorName;
-  return hexToRgb(_ctx.fillStyle);
-}

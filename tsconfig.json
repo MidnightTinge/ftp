@@ -1,13 +1,18 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "lib": ["es2017"],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
     "strict": false,
     "typeRoots": [
       "./node_modules/@types",
       "./node_modules/@figma"
     ],
     "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
     "outDir": "dist"
   },
   "include": ["src"]

@@ -9,7 +9,7 @@ export default class BoxShadow extends PageGenerator {
     const page = figma.createPage();
     page.name = `TW/${runkey}/BoxShadow`;
 
-    // TW.theme.boxShadow.
+    // TODO: We need some rectangles that show the shadows.
 
     return page;
   }

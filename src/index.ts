@@ -17,12 +17,14 @@ import Generators from './generators';
     const am: AssetMap = {} as any; // as any since we're buiding this piecemeal.
 
     am.colors = new Generators.SColors().generate(RunKey);
-    am.effects = {};
+    am.effects = new Generators.SShadows().generate(RunKey);
 
     // Run all the generators
     new Generators.PColors().generate(RunKey, am);
     new Generators.PBoxShadow().generate(RunKey, am);
   } catch (e) {
+    console.error(e)
+
     const rethrow: any = new Error('[TW] Run failed');
     rethrow.runKey = RunKey;
     rethrow.cause = e;
