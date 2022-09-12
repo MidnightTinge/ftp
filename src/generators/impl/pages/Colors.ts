@@ -1,4 +1,5 @@
-import { add, cap } from '../../../functions';
+import { add } from '../../../functions/figma';
+import { cap } from '../../../functions/strings';
 import { Cube, LayoutFrame, Text } from '../../../interop/figma';
 import { COLORS } from '../../../interop/tw';
 import { AssetMap, PageGenerator } from '../../PageGenerator';

@@ -1,4 +1,4 @@
-import { cap } from '../../../functions';
+import { cap } from '../../../functions/strings';
 import { hexToRgb } from '../../../interop/figma';
 import { COLORS } from '../../../interop/tw';
 import StyleGenerator, { StyleMap } from '../../StyleGenerator';
