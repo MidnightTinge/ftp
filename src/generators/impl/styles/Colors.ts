@@ -1,18 +1,9 @@
 import { cap } from '../../../functions/strings';
 import { hexToRgb } from '../../../interop/figma';
 import { COLORS } from '../../../interop/tw';
-import StyleGenerator, { StyleMap } from '../../StyleGenerator';
+import IGenerator, { StyleMap } from '../../IGenerator';
 
-/**
- * Generates figma colors for all the tailwind colors and makes them usable locally in the document.
- *
- * @see PColors
- */
-export default class Colors extends StyleGenerator<PaintStyle> {
-  constructor() {
-    super('styles.colors');
-  }
-
+export default <IGenerator<StyleMap<PaintStyle>>>{
   generate(runkey: string): StyleMap<PaintStyle> {
     const STYLES: StyleMap<PaintStyle> = {};
 

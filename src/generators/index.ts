@@ -6,7 +6,7 @@ import SShadows from './impl/styles/Shadows';
 
 //
 
-export default {
+export {
   PBoxShadow,
   PColors,
 

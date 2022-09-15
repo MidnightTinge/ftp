@@ -2,18 +2,9 @@ import { add } from '../../../functions/figma';
 import { cap } from '../../../functions/strings';
 import { Cube, LayoutFrame, Text } from '../../../interop/figma';
 import { COLORS } from '../../../interop/tw';
-import { AssetMap, PageGenerator } from '../../PageGenerator';
+import IGenerator, { AssetMap } from '../../IGenerator';
 
-/**
- * Generates a preview page for tailwind colors.
- *
- * @see SColors
- */
-export default class Colors extends PageGenerator {
-  constructor() {
-    super('pages.colors');
-  }
-
+export default <IGenerator<PageNode>>{
   generate(runkey: string, { colors: paints }: AssetMap): PageNode {
     const page = figma.createPage();
     page.name = `TW/${runkey}/Colors`;
@@ -105,5 +96,5 @@ export default class Colors extends PageGenerator {
     add(page, pageWrapper);
 
     return page;
-  }
-}
+  },
+};

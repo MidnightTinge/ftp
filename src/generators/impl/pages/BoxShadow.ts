@@ -1,12 +1,8 @@
 import { add } from '../../../functions/figma';
 import { LayoutFrame, Text } from '../../../interop/figma';
-import { AssetMap, PageGenerator } from '../../PageGenerator';
+import IGenerator, { AssetMap } from '../../IGenerator';
 
-export default class BoxShadow extends PageGenerator {
-  constructor() {
-    super('pages.boxShadow');
-  }
-
+export default <IGenerator<PageNode>>{
   generate(runkey: string, assets: AssetMap): PageNode {
     const page = figma.createPage();
     page.name = `TW/${runkey}/BoxShadow`;
@@ -52,5 +48,5 @@ export default class BoxShadow extends PageGenerator {
     wrapper.insertChild(0, _inner);
 
     return add(page, wrapper);
-  }
-}
+  },
+};

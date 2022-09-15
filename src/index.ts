@@ -1,5 +1,5 @@
-import { AssetMap } from './generators/PageGenerator';
-import Generators from './generators';
+import * as Generators from './generators';
+import { AssetMap } from './generators/IGenerator';
 
 (async function TW() {
   const RunKey = String(Date.now());
@@ -16,18 +16,18 @@ import Generators from './generators';
     // Build our AssetMap
     const am: AssetMap = {} as any; // as any since we're buiding this piecemeal.
 
-    am.colors = new Generators.SColors().generate(RunKey);
-    am.effects = new Generators.SShadows().generate(RunKey);
+    am.colors = Generators.SColors.generate(RunKey, am);
+    am.effects = Generators.SShadows.generate(RunKey, am);
 
     // Run all the generators
-    new Generators.PColors().generate(RunKey, am);
-    new Generators.PBoxShadow().generate(RunKey, am);
+    Generators.PColors.generate(RunKey, am);
+    Generators.PBoxShadow.generate(RunKey, am);
   } catch (e) {
-    console.error(e)
-
     const rethrow: any = new Error('[TW] Run failed');
     rethrow.runKey = RunKey;
     rethrow.cause = e;
+
+    console.error(rethrow);
 
     throw e;
   } finally {
