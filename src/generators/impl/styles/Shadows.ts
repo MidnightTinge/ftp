@@ -49,6 +49,8 @@ export default class Shadows extends StyleGenerator<EffectStyle> {
       const es = figma.createEffectStyle();
       es.name = `TW/${runkey}/Shadow/${k.toLowerCase()}`;
       es.effects = styles;
+
+      map[k.toLowerCase()] = es;
     }
 
     return map;

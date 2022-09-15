@@ -1,4 +1,5 @@
 export type Padding = number | { top: number, right: number, bottom: number, left: number } | { horizontal: number, vertical: number };
+export type Radii = number | { topLeft: number, topRight: number, bottomRight: number, bottomLeft: number };
 export type AutoSize = 'wrap' | 'auto' | number;
 export type AxisPlacement = 'min' | 'center' | 'max';
 
@@ -54,6 +55,7 @@ export type LayoutFrameProps = {
   direction: 'row' | 'column',
   itemSpacing: number,
   containerPadding: Padding,
+  cornerRadius?: Radii,
   width: AutoSize,
   height: AutoSize,
   horizPlacement: AxisPlacement,
@@ -67,6 +69,7 @@ export function LayoutFrame({
   direction,
   itemSpacing,
   containerPadding,
+  cornerRadius,
   width,
   height,
   horizPlacement,
@@ -92,13 +95,26 @@ export function LayoutFrame({
     frame.verticalPadding = containerPadding.vertical;
   }
 
+  if (cornerRadius != null) {
+    if (typeof cornerRadius === 'number') {
+      frame.cornerRadius = cornerRadius;
+    } else {
+      frame.topLeftRadius = cornerRadius.topLeft;
+      frame.topRightRadius = cornerRadius.topRight;
+      frame.bottomRightRadius = cornerRadius.bottomRight;
+      frame.bottomLeftRadius = cornerRadius.bottomLeft;
+    }
+  }
+
   if (typeof width === 'number') {
+    frame[_hv.sizing.horiz] = 'FIXED'
     frame.resizeWithoutConstraints(width, frame.height);
   } else {
     frame[_hv.sizing.horiz] = width === 'auto' ? 'FIXED' : 'AUTO';
   }
 
   if (typeof height === 'number') {
+    frame[_hv.sizing.vert] = 'FIXED'
     frame.resizeWithoutConstraints(frame.width, height);
   } else {
     frame[_hv.sizing.vert] = height === 'auto' ? 'FIXED' : 'AUTO';
@@ -140,9 +156,10 @@ export function LayoutFrame({
 /**
  * Create a new text node.
  */
-export function Text(text: string): TextNode {
+export function Text(text: string, size?: number): TextNode {
   const node = figma.createText();
   node.characters = text;
+  node.fontSize = size ?? node.fontSize;
 
   return node;
 }
