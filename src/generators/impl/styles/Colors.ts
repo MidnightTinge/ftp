@@ -4,14 +4,14 @@ import { COLORS } from '../../../interop/tw';
 import IGenerator, { StyleMap } from '../../IGenerator';
 
 export default <IGenerator<StyleMap<PaintStyle>>>{
-  generate(runkey: string): StyleMap<PaintStyle> {
+  async generate(RunKey: string): Promise<StyleMap<PaintStyle>> {
     const STYLES: StyleMap<PaintStyle> = {};
 
     for (const [k, v] of Object.entries(COLORS)) {
       const H = cap(k);
       if (typeof v === 'string') { // e.g. { "black": "#000" }
         const ps = figma.createPaintStyle();
-        ps.name = `TW/${runkey}/${H}`;
+        ps.name = `TW/${RunKey}/${H}`;
         ps.paints = [{
           type: 'SOLID',
           blendMode: 'NORMAL',
@@ -31,7 +31,7 @@ export default <IGenerator<StyleMap<PaintStyle>>>{
           const T = cap(cK);
           // Our child key (`cK`) would be something like "300"
           const ps = figma.createPaintStyle();
-          ps.name = `TW/${runkey}/${H}/${T}`;
+          ps.name = `TW/${RunKey}/${H}/${T}`;
           ps.paints = [{
             type: 'SOLID',
             blendMode: 'NORMAL',

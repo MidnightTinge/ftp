@@ -3,9 +3,9 @@ import { LayoutFrame, Text } from '../../../interop/figma';
 import IGenerator, { AssetMap } from '../../IGenerator';
 
 export default <IGenerator<PageNode>>{
-  generate(runkey: string, assets: AssetMap): PageNode {
+  async generate(RunKey: string, assets: AssetMap): Promise<PageNode> {
     const page = figma.createPage();
-    page.name = `TW/${runkey}/BoxShadow`;
+    page.name = `TW/${RunKey}/BoxShadow`;
 
     const wrapper = LayoutFrame({
       containerPadding: { horizontal: 32, vertical: 32 },

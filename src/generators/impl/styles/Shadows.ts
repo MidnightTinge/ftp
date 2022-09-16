@@ -2,7 +2,7 @@ import { BOX_SHADOW } from '../../../interop/tw';
 import IGenerator, { StyleMap } from '../../IGenerator';
 
 export default <IGenerator<StyleMap<EffectStyle>>>{
-  generate(runkey: string): StyleMap<EffectStyle> {
+  async generate(RunKey: string): Promise<StyleMap<EffectStyle>> {
 
     const map: StyleMap<EffectStyle> = {};
     for (const [k, v] of Object.entries(BOX_SHADOW)) {
@@ -38,7 +38,7 @@ export default <IGenerator<StyleMap<EffectStyle>>>{
         });
 
       const es = figma.createEffectStyle();
-      es.name = `TW/${runkey}/Shadow/${k.toLowerCase()}`;
+      es.name = `TW/${RunKey}/Shadow/${k.toLowerCase()}`;
       es.effects = styles;
 
       map[k.toLowerCase()] = es;

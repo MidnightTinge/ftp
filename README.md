@@ -28,11 +28,12 @@ only colors are implemented.
 | Custom Config      | ⏰ Planned         |
 | Config UI          | ⏰ Planned         |
 | Custom Key Scoping | ⏰ Planned         |
-| Gradients          | ❓ Considering[^1] |
+| Gradients          | ❌ Cancelled [^1]  |
 | Blend Modes        | ❓ Considering[^2] |
 
-[^1]: Gradients are a complex beast, they're easy to generate but will end up generating a massive
-amount of permutations. It's not clear if this is a good idea at this point.
+[^1]: There are way too many gradients to generate. As expected, doing a single sweep of left->right
+gradients for every color permutation takes way too long. The script didn't even finish running for
+my attempts.
 
 [^2]: I'm unsure if blend modes are useful in the design system at this point.
 

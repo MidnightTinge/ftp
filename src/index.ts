@@ -1,3 +1,4 @@
+import { buildAssetMap, generate } from './generators';
 import * as Generators from './generators';
 import { AssetMap } from './generators/IGenerator';
 
@@ -13,21 +14,14 @@ import { AssetMap } from './generators/IGenerator';
       figma.loadFontAsync({ family: 'Inter', style: 'Regular' }),
     ]);
 
-    // Build our AssetMap
-    const am: AssetMap = {} as any; // as any since we're buiding this piecemeal.
-
-    am.colors = Generators.SColors.generate(RunKey, am);
-    am.effects = Generators.SShadows.generate(RunKey, am);
-
-    // Run all the generators
-    Generators.PColors.generate(RunKey, am);
-    Generators.PBoxShadow.generate(RunKey, am);
+    // Run the generation. This builds the asset map and then runs all the generators.
+    await generate(RunKey);
   } catch (e) {
-    const rethrow: any = new Error('[TW] Run failed');
-    rethrow.runKey = RunKey;
-    rethrow.cause = e;
+    console.error('[TW] Run Failed', e);
 
-    console.error(rethrow);
+    const rethrow: any = new Error('[TW] Run failed');
+    rethrow.RunKey = RunKey;
+    rethrow.cause = e;
 
     throw e;
   } finally {

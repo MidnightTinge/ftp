@@ -107,14 +107,14 @@ export function LayoutFrame({
   }
 
   if (typeof width === 'number') {
-    frame[_hv.sizing.horiz] = 'FIXED'
+    frame[_hv.sizing.horiz] = 'FIXED';
     frame.resizeWithoutConstraints(width, frame.height);
   } else {
     frame[_hv.sizing.horiz] = width === 'auto' ? 'FIXED' : 'AUTO';
   }
 
   if (typeof height === 'number') {
-    frame[_hv.sizing.vert] = 'FIXED'
+    frame[_hv.sizing.vert] = 'FIXED';
     frame.resizeWithoutConstraints(frame.width, height);
   } else {
     frame[_hv.sizing.vert] = height === 'auto' ? 'FIXED' : 'AUTO';
@@ -189,6 +189,50 @@ export function Cube({
   }
 
   return node;
+}
+
+export const ONE_REM = 16;
+const RE_NUMERIC = /^-?[0-9](?:\.[0-9]+)?$/;
+
+export function fromCss(rem: string, extended?: true): { value: number, unit: 'percent' | 'px' };
+export function fromCss(rem: string, extended?: false): number;
+export function fromCss(rem: string, extended: boolean = false) {
+  if (RE_NUMERIC.test(rem)) {
+    const parsed = parseFloat(rem);
+
+    if (extended) {
+      // we got a value like "1.3", convert to 130%
+      return {
+        value: parsed * 100,
+        unit: 'percent',
+      };
+    }
+
+    // we can't return a percent here so convert it relative to rem
+    return parsed * ONE_REM;
+  }
+
+  const [val] = /^-?[0-9](?:\.[0-9]+)?/.exec(rem);
+  const parsed = parseFloat(val);
+  if (!isNaN(parsed)) {
+    if (extended) {
+      return {
+        value: parsed * ONE_REM,
+        unit: 'px',
+      };
+    }
+
+    return parsed * ONE_REM;
+  }
+
+  if (extended) {
+    return {
+      value: 0,
+      unit: 'px',
+    };
+  }
+
+  return 0;
 }
 
 

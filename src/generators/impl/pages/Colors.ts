@@ -5,9 +5,9 @@ import { COLORS } from '../../../interop/tw';
 import IGenerator, { AssetMap } from '../../IGenerator';
 
 export default <IGenerator<PageNode>>{
-  generate(runkey: string, { colors: paints }: AssetMap): PageNode {
+  async generate(RunKey: string, { colors: paints }: AssetMap): Promise<PageNode> {
     const page = figma.createPage();
-    page.name = `TW/${runkey}/Colors`;
+    page.name = `TW/${RunKey}/Colors`;
 
     const pageWrapper = LayoutFrame({
       direction: 'column',
